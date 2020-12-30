@@ -1,6 +1,9 @@
 package ifacer
 
-import "time"
+import (
+	"github.com/magiconair/properties"
+	"time"
+)
 
 type ChangeFunc func(iv Configer)
 type OptionFunc func(iv Configer)
@@ -14,7 +17,13 @@ type ConfigChanger interface {
 	SetOnRemoveFunc(onRemoveFunc ChangeFunc)
 }
 
+type ConfigForPropertier interface {
+	GetProperties() *properties.Properties
+	SetProperties(p *properties.Properties)
+}
+
 type ConfigReader interface {
+	AllKeys() []string
 	GetValue() interface{}
 	Get(key string) (interface{}, error)
 	GetString(key string) (string, error)
@@ -32,7 +41,6 @@ type ConfigReader interface {
 	GetSizeInBytes(key string) (uint, error)
 
 	UnmarshalKey(key string, rawVal interface{}) error
-	Unmarshal(rawVal interface{}) error
 }
 
 type ConfigWriter interface {
