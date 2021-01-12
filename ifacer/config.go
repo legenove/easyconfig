@@ -9,12 +9,13 @@ type ChangeFunc func(iv Configer)
 type OptionFunc func(iv Configer)
 
 type ConfigManager interface {
-	Instance(name, _type string, val interface{}, opts ...OptionFunc) (Configer, error)
+	Instance(name, parserType string, val interface{}, opts ...OptionFunc) (Configer, error)
 }
 
 type ConfigChanger interface {
 	SetOnChangeFunc(onChangeFunc ChangeFunc)
 	SetOnRemoveFunc(onRemoveFunc ChangeFunc)
+	OnChangeChan() <-chan struct{}
 }
 
 type ConfigForPropertier interface {
