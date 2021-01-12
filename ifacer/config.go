@@ -16,6 +16,7 @@ type ConfigChanger interface {
 	SetOnChangeFunc(onChangeFunc ChangeFunc)
 	SetOnRemoveFunc(onRemoveFunc ChangeFunc)
 	OnChangeChan() <-chan struct{}
+	OnRemoveChan() <-chan struct{}
 }
 
 type ConfigForPropertier interface {
