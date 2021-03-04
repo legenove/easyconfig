@@ -43,6 +43,7 @@ type ConfigReader interface {
 	GetSizeInBytes(key string) (uint, error)
 
 	UnmarshalKey(key string, rawVal interface{}) error
+	Unmarshal(rawVal interface{}) error
 }
 
 type ConfigWriter interface {
